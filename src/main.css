@@ -1,0 +1,9 @@
+body, html, #root{
+  display: block;
+}
+
+body{
+  background-image: url(https://i.insider.com/5d0bf7bc0a284967e94ab267?width=1000);
+  background-position-x: right;
+  background-repeat: no-repeat;
+}
