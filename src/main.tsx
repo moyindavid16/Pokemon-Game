@@ -5,9 +5,11 @@ import Game from './pages/Game'
 import HowToPlay from './pages/HowToPlay'
 import MainMenu from './pages/MainMenu'
 import './main.css'
+import Background from './Background'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
+    <Background />
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<MainMenu />} />
