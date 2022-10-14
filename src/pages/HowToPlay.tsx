@@ -1,7 +1,3 @@
-export default function HowToPlay(){
-    return(
-        <>
-            How To Play page!
-        </>
-    )
+export default function HowToPlay() {
+  return <>How To Play page!</>;
 }
