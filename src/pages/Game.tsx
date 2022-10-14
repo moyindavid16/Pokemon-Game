@@ -3,7 +3,11 @@ import { Key, useMemo, useRef, useState } from "react";
 import Background from "../Background";
 import {client} from "../main"
 
-export default function Game() {
+interface GameProps{
+    resetKey: Function
+}
+
+export default function Game({resetKey}: GameProps) {
   const [answerStatus, setAnswerStatus] = useState<undefined | Result>(
     undefined
   );
@@ -12,8 +16,8 @@ export default function Game() {
   const randomPokeFetcher = () => {
     let id = Math.floor(Math.random() * 905) + 1;
     return fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
+      .then(res => res.json())
+      .then(data => {
         console.log(data.name);
         pokeArray.current = [];
         return data;
@@ -38,9 +42,6 @@ export default function Game() {
     randomPokeFetcher
   );
 
-  const refetch = async () => {
-    await client.refetchQueries();
-  }
 
   enum Result {
     Correct,
@@ -63,7 +64,7 @@ if(pokeArray.current.length==0)pokeArray.current=[poke1.name,poke2.name,poke3.na
       ))}
       {answerStatus == Result.Correct && <div>Correct</div>}
       {answerStatus == Result.Wrong && <div>Wrong</div>}
-      <button onClick={() => refetch()}>Play again</button>
+      <button onClick={() => resetKey()}>Play again</button>
     </>
   );
 }
