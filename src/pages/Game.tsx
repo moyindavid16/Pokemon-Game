@@ -39,7 +39,7 @@ export default function Game() {
   // FUNCTION TO HANDLE RESPONSE FROM USER
   const handleAnswerClick = (userResponse: Key) => {
     if (userResponse == poke1.name) {
-      if (answerStatus != Result.Correct) setScore(score => score + 1);
+      if (answerStatus == undefined) setScore(score => score + 1);
       setAnswerStatus(Result.Correct);
     } else setAnswerStatus(Result.Wrong);
   };
