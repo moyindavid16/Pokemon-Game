@@ -11,7 +11,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainMenu />} />
-        <Route path="/play" element={<Game key={resetKey} resetKey={() => setResetKey(Date.now())} />} />
+        <Route path="/play" element={<Game />} />
         <Route path="/how-to-play" element={<HowToPlay />} />
       </Routes>
     </BrowserRouter>
