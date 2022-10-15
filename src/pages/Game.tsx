@@ -2,8 +2,8 @@ import {useQuery} from "@tanstack/react-query";
 import {Key, useMemo, useRef, useState} from "react";
 import Background from "../Background";
 import {client} from "../main";
-import altImg from "../pokeball.webp"
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import altImg from "../pokeball.webp";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 interface GameProps {
   resetKey: Function;
@@ -46,14 +46,17 @@ export default function Game({resetKey}: GameProps) {
     pokeArray.current = [poke1.name, poke2.name, poke3.name].sort(() => 0.5 - Math.random());
 
   return (
-    <div>
+    <div className="wrapper">
       Game page
-      <LazyLoadImage src={poke1.sprites.front_default} placeholderSrc={altImg} width="100px" height="100px"/>
-      {pokeArray.current.map(pokeName => (
-        <button key={pokeName} onClick={() => handleAnswerClick(pokeName)}>
-          {pokeName}
-        </button>
-      ))}
+      <LazyLoadImage src={poke1.sprites.front_default} placeholderSrc={altImg} width="120px" height="120px" />
+      <div className="answerChoices">
+        {pokeArray.current.map(pokeName => (
+          <button key={pokeName} onClick={() => handleAnswerClick(pokeName)}>
+            {pokeName}
+          </button>
+        ))}
+      </div>
+      {answerStatus == undefined && <div>Make a Choice!</div>}
       {answerStatus == Result.Correct && <div>Correct</div>}
       {answerStatus == Result.Wrong && <div>Wrong</div>}
       <button onClick={() => resetKey()}>Play again</button>

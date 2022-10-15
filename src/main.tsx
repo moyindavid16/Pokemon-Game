@@ -19,7 +19,7 @@ export const client = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    {/*<Background />*/}
+    <Background />
     <QueryClientProvider client={client}>
       <App />
     </QueryClientProvider>
