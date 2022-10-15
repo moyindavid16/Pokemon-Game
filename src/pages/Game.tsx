@@ -2,6 +2,8 @@ import {useQuery} from "@tanstack/react-query";
 import {Key, useMemo, useRef, useState} from "react";
 import Background from "../Background";
 import {client} from "../main";
+import altImg from "../pokeball.webp"
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface GameProps {
   resetKey: Function;
@@ -46,7 +48,7 @@ export default function Game({resetKey}: GameProps) {
   return (
     <div>
       Game page
-      <img src={poke1.sprites.front_default} alt="" />
+      <LazyLoadImage src={poke1.sprites.front_default} placeholderSrc={altImg} width="100px" height="100px"/>
       {pokeArray.current.map(pokeName => (
         <button key={pokeName} onClick={() => handleAnswerClick(pokeName)}>
           {pokeName}
