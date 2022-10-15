@@ -4,7 +4,7 @@ export default function Background() {
       <img
         className="background"
         src="https://wallpaperaccess.com/full/174922.jpg"
-        
+        height="110vh"
       ></img>
     </>
   );
