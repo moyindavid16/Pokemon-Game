@@ -4,6 +4,7 @@ import Game from "./pages/Game";
 import HowToPlay from "./pages/HowToPlay";
 import MainMenu from "./pages/MainMenu";
 
+
 export default function App() {
   const [resetKey, setResetKey] = useState(Date.now());
 

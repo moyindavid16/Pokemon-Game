@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 body,
 html,
 #root {
@@ -5,7 +7,7 @@ html,
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Kanit', sans-serif;
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -32,11 +34,19 @@ html,
   justify-content: space-around;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 3%;
+  font-size: 1.2rem;
 }
 
 .answerChoices{
   min-width: 100%;
+  height: 5%;
   display: flex;
   justify-content: space-around;
+}
+
+.loadingBanner{
+  font-size: larger;
+  color: black;
+  font-weight: 500;
 }
 

@@ -23,10 +23,11 @@ export default function Game() {
       });
   };
 
+
   //QUERIES
-  const {isLoading: poke1IsLoading, data: poke1, refetch: refetch1} = useQuery(["randomPokemon1"], randomPokeFetcher);
-  const {isLoading: poke2IsLoading, data: poke2, refetch: refetch2} = useQuery(["randomPokemon2"], randomPokeFetcher);
-  const {isLoading: poke3IsLoading, data: poke3, refetch: refetch3} = useQuery(["randomPokemon3"], randomPokeFetcher);
+  const {isFetching: poke1IsFetching, data: poke1, refetch: refetch1} = useQuery(["randomPokemon1"], randomPokeFetcher);
+  const {isFetching: poke2IsFetching, data: poke2, refetch: refetch2} = useQuery(["randomPokemon2"], randomPokeFetcher);
+  const {isFetching: poke3IsFetching, data: poke3, refetch: refetch3} = useQuery(["randomPokemon3"], randomPokeFetcher);
 
   //FUNCTIONS
   //FUNCTION FOR PLAY AGAIN ACTION
@@ -50,34 +51,53 @@ export default function Game() {
     Wrong,
   }
 
+  let choices, pokeImage;
   //Loading state
-  if (poke1IsLoading || poke2IsLoading || poke3IsLoading) return <div>Loading...</div>;
-
-  if (pokeArray.current.length == 0)
+  if (poke1IsFetching || poke2IsFetching || poke3IsFetching){
+    choices = <div className="loadingBanner">Who's that Pokémon!</div>
+    pokeImage=altImg;
+  }
+  else{
+    if (pokeArray.current.length == 0)
     pokeArray.current = [poke1.name, poke2.name, poke3.name].sort(() => 0.5 - Math.random());
+    choices = <UserChoices pokeArray={pokeArray.current} handleAnswerClick={handleAnswerClick}/>  
+    pokeImage=poke1.sprites.front_default;
+  }
+
+  
 
   return (
     <div className="wrapper">
       Game page
       <div>{score}</div>
       <LazyLoadImage
-        src={poke1.sprites.front_default}
+        src={pokeImage}
         placeholderSrc={altImg}
         width="120px"
         height="120px"
         delayTime={0}
       />
-      <div className="answerChoices">
-        {pokeArray.current.map(pokeName => (
-          <button key={pokeName} onClick={() => handleAnswerClick(pokeName)}>
-            {pokeName}
-          </button>
-        ))}
-      </div>
+      <div className="answerChoices">{choices}</div>
+      
       {answerStatus == undefined && <div>Make a Choice!</div>}
       {answerStatus == Result.Correct && <div>Correct</div>}
       {answerStatus == Result.Wrong && <div>Wrong</div>}
       <button onClick={() => playAgain()}>Play again</button>
     </div>
   );
+}
+
+function UserChoices({pokeArray, handleAnswerClick}: UserChoicesProps){
+  return(
+    <>
+        {pokeArray.map(pokeName => (
+          <button key={pokeName} onClick={() => handleAnswerClick(pokeName)}>{pokeName}</button>
+        ))}
+      </>
+  )
+}
+
+interface UserChoicesProps{
+  pokeArray: Array<Key>,
+  handleAnswerClick: Function
 }
