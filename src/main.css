@@ -25,6 +25,43 @@ html,
   object-fit: cover;
 }
 
+.mainMenu{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 25%;
+  width: 100%;
+}
+
+.mainMenuItem{
+  all: unset;
+  border: 1px black solid;
+  border-radius: 5%;
+  padding: 1%;
+  width: 45%;
+  text-align: center;
+}
+
+.mainMenuItem:hover{
+  cursor: pointer;
+  animation: move 0.1s forwards infinite alternate;
+}
+
+@keyframes move {
+  from{color: black;}
+  to{color: grey;}
+}
+
+.BackButton{
+  all: unset;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+.BackButton:hover{cursor: pointer;}
+
+
 .wrapper{
   min-height: 80%;
   min-width: 30%;
@@ -50,3 +87,6 @@ html,
   font-weight: 500;
 }
 
+.answerChoiceButton{
+  font-size: 1rem;
+}

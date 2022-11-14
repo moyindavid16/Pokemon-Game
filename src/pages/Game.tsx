@@ -4,6 +4,7 @@ import Background from "../Background";
 import {client} from "../main";
 import altImg from "../pokeball.webp";
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import { Link } from "react-router-dom";
 
 export default function Game() {
   //STATES AND VARIABLES
@@ -68,7 +69,8 @@ export default function Game() {
 
   return (
     <div className="wrapper">
-      Game page
+      <Link to="/" className="BackButton">← Back</Link>
+      <div>Game page</div>
       <div>{score}</div>
       <LazyLoadImage
         src={pokeImage}
@@ -91,7 +93,7 @@ function UserChoices({pokeArray, handleAnswerClick}: UserChoicesProps){
   return(
     <>
         {pokeArray.map(pokeName => (
-          <button key={pokeName} onClick={() => handleAnswerClick(pokeName)}>{pokeName}</button>
+          <button key={pokeName} className="answerChoiceButton" onClick={() => handleAnswerClick(pokeName)}>{pokeName}</button>
         ))}
       </>
   )

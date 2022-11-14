@@ -4,7 +4,7 @@ export default function MainMenu() {
   return (
     <div className="wrapper">
       <div>Welcome to My Pokemon Guessing Game</div>
-      <div>
+      <div className="mainMenu">
         <Link to="/play" className="mainMenuItem">
           Play!
         </Link>
